@@ -37,14 +37,24 @@ public class CalculadoraController {
             }else if (entrada.equals("+")){
                 operador = entrada; 
                 actualizarPantalla(pantalla);
-            } else if (entrada.equals("=")){
+            }else if (entrada.equals("-")){
+                operador = entrada;
+                actualizarPantalla(pantalla);
+            }else if (entrada.equals("=")){
                 if (operador.equals("+")){
                     n1 = resultadoSuma(n1, n2);
                     operador = "";
                     n2 = "";
                     calucloTerminado = true;
-                }
                 actualizarPantalla(pantalla);
+                }else if (operador.equals("-")){ 
+                    n1 = resultadoResta(n1, n2);
+                    operador = "";
+                    n2 = "";
+                    actualizarPantalla(pantalla);
+            }
+                
+                
             }
         }
     private void actualizarPantalla(Label pantalla){
@@ -61,4 +71,12 @@ public class CalculadoraController {
         int suma = datoUno + datoDos;
         return resultado = String.valueOf(suma);
     }
+    private String resultadoResta(String numeroUno, String numeroDos){
+        String resultado; 
+        int datoUno = Integer.parseInt(n1);
+        int datoDos = Integer.parseInt(n2);
+        int resta = datoUno - datoDos;
+        return resultado = String.valueOf(resta);
+    }
+    
 }

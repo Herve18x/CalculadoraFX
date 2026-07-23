@@ -15,6 +15,8 @@ public class CalculadoraController {
     private String n1 = "";
     private String operador = "";
     private String n2 = "";
+    
+    
    private boolean calucloTerminado = true;
     
     public CalculadoraController(){
@@ -52,6 +54,9 @@ public class CalculadoraController {
                 operador = entrada; 
                 n1 = resultadoRaiz(n1);
                 actualizarPantalla(pantalla);
+            }else if (entrada.equals("x²")){
+                operador = entrada;
+                actualizarPantalla(pantalla);
             }else if (entrada.equals("=")){
             switch (operador) {
                 case "+":
@@ -79,6 +84,11 @@ public class CalculadoraController {
                     n2 = "";
                     actualizarPantalla(pantalla);
                     break;
+                case "x²":
+                    n1 = resultadoPotencia(n1, n2);
+                    operador = "";
+                    n2 = "";
+                    actualizarPantalla(pantalla);
                 default:
                     break;
             }
@@ -126,5 +136,12 @@ public class CalculadoraController {
         double datoUno = Double.parseDouble(n1);
         double raiz = Math.sqrt(datoUno);
         return resultado = String.valueOf(raiz);
+    }
+    private String resultadoPotencia (String numeroUno, String numeroDos) {
+        String resultado; 
+        double datoUno = Double.parseDouble(n1);
+        double datoDos = Double.parseDouble(n2); 
+        double potencia = Math.pow(datoUno, datoDos);
+        return resultado = String.valueOf(potencia);
     }
 }

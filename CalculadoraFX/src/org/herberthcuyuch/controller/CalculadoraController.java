@@ -43,25 +43,39 @@ public class CalculadoraController {
             }else if (entrada.equals("x")){
                 operador = entrada;
                 actualizarPantalla(pantalla);
+            }else if (entrada.equals("÷")){
+                operador = entrada; 
+                actualizarPantalla(pantalla);
             }else if (entrada.equals("=")){
-                if (operador.equals("+")){
+            switch (operador) {
+                case "+":
                     n1 = resultadoSuma(n1, n2);
                     operador = "";
                     n2 = "";
                     calucloTerminado = true;
-                actualizarPantalla(pantalla);
-                }else if (operador.equals("-")){ 
+                    actualizarPantalla(pantalla);
+                    break; 
+                case "-":
                     n1 = resultadoResta(n1, n2);
                     operador = "";
                     n2 = "";
                     actualizarPantalla(pantalla);
-                
-                }else if (operador.equals("x")) {
+                    break;
+                case "x":
                     n1 = resultadoMultiplicacion(n1, n2);
                     operador = "";
                     n2 = "";
                     actualizarPantalla(pantalla);
-                }
+                    break;
+                case "÷":
+                    n1 = resultadoDivision(n1, n2);
+                    operador = "";
+                    n2 = "";
+                    actualizarPantalla(pantalla);
+                    break;
+                default:
+                    break;
+            }
                 
                 
             }
@@ -93,6 +107,12 @@ public class CalculadoraController {
         int datoDos = Integer.parseInt(n2);
         int multiplicacion = datoUno * datoDos;
         return resultado = String.valueOf(multiplicacion);
-        
+    }
+    private String resultadoDivision (String numeroUno, String numeroDos) {
+        String resultado;
+        double datoUno = Double.parseDouble(n1);
+        double datoDos = Double.parseDouble(n2);
+        double division = datoUno / datoDos;
+        return resultado = String.valueOf(division);
     }
 }

@@ -40,6 +40,9 @@ public class CalculadoraController {
             }else if (entrada.equals("-")){
                 operador = entrada;
                 actualizarPantalla(pantalla);
+            }else if (entrada.equals("x")){
+                operador = entrada;
+                actualizarPantalla(pantalla);
             }else if (entrada.equals("=")){
                 if (operador.equals("+")){
                     n1 = resultadoSuma(n1, n2);
@@ -52,7 +55,13 @@ public class CalculadoraController {
                     operador = "";
                     n2 = "";
                     actualizarPantalla(pantalla);
-            }
+                
+                }else if (operador.equals("x")) {
+                    n1 = resultadoMultiplicacion(n1, n2);
+                    operador = "";
+                    n2 = "";
+                    actualizarPantalla(pantalla);
+                }
                 
                 
             }
@@ -78,5 +87,12 @@ public class CalculadoraController {
         int resta = datoUno - datoDos;
         return resultado = String.valueOf(resta);
     }
-    
+    private String resultadoMultiplicacion (String numeroUno, String numeroDos) {
+        String resultado;
+        int datoUno = Integer.parseInt(n1);
+        int datoDos = Integer.parseInt(n2);
+        int multiplicacion = datoUno * datoDos;
+        return resultado = String.valueOf(multiplicacion);
+        
+    }
 }

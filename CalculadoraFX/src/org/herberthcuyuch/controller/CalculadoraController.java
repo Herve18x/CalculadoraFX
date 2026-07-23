@@ -15,10 +15,8 @@ public class CalculadoraController {
     private String n1 = "";
     private String operador = "";
     private String n2 = "";
-    
-    
-   private boolean calucloTerminado = true;
-    
+    private boolean calucloTerminado = true;
+    private String decimal = "";
     public CalculadoraController(){
         
     }
@@ -57,6 +55,29 @@ public class CalculadoraController {
             }else if (entrada.equals("x²")){
                 operador = entrada;
                 actualizarPantalla(pantalla);
+            }else if (entrada.equals(".")){
+            if (operador.isEmpty()) {
+
+                // El punto pertenece a n1
+                if (!n1.contains(".")) {
+                    if (n1.isEmpty()) {
+                        n1 = "0.";
+                    } else {
+                        n1 += ".";
+                    }
+                }
+            } else {
+
+                // El punto pertenece a n2
+                if (!n2.contains(".")) {
+                    if (n2.isEmpty()) {
+                        n2 = "0.";
+                    } else {
+                        n2 += ".";
+                    }
+                }
+            }
+                actualizarPantalla(pantalla);
             }else if (entrada.equals("=")){
             switch (operador) {
                 case "+":
@@ -89,11 +110,10 @@ public class CalculadoraController {
                     operador = "";
                     n2 = "";
                     actualizarPantalla(pantalla);
+                    break;       
                 default:
                     break;
             }
-                
-                
             }
         }
     private void actualizarPantalla(Label pantalla){
@@ -105,23 +125,23 @@ public class CalculadoraController {
     }
     private String resultadoSuma(String numeroUno, String  numeroDos){
         String resultado;
-        int datoUno = Integer.parseInt(n1);
-        int datoDos = Integer.parseInt(n2);
-        int suma = datoUno + datoDos;
+        double datoUno = Double.parseDouble(n1);
+        double datoDos = Double.parseDouble(n2);
+        double suma = datoUno + datoDos;
         return resultado = String.valueOf(suma);
     }
     private String resultadoResta(String numeroUno, String numeroDos){
         String resultado; 
-        int datoUno = Integer.parseInt(n1);
-        int datoDos = Integer.parseInt(n2);
-        int resta = datoUno - datoDos;
+        double datoUno = Double.parseDouble(n1);
+        double datoDos = Double.parseDouble(n2);
+        double resta = datoUno - datoDos;
         return resultado = String.valueOf(resta);
     }
     private String resultadoMultiplicacion (String numeroUno, String numeroDos) {
         String resultado;
-        int datoUno = Integer.parseInt(n1);
-        int datoDos = Integer.parseInt(n2);
-        int multiplicacion = datoUno * datoDos;
+        double datoUno = Double.parseDouble(n1);
+        double datoDos = Double.parseDouble(n2);
+        double multiplicacion = datoUno * datoDos;
         return resultado = String.valueOf(multiplicacion);
     }
     private String resultadoDivision (String numeroUno, String numeroDos) {
@@ -145,3 +165,4 @@ public class CalculadoraController {
         return resultado = String.valueOf(potencia);
     }
 }
+

@@ -30,8 +30,10 @@ public class CalculadoraController {
         if (entrada.matches("[0-9]")) {
             if (operador.isEmpty()) {
                 n1 += entrada;
-            }else {
+            }else if (!operador.equals("√")){
                 n2 += entrada;
+            }else {
+                n2 = "";
             }
             actualizarPantalla(pantalla);
             }else if (entrada.equals("+")){
@@ -45,6 +47,10 @@ public class CalculadoraController {
                 actualizarPantalla(pantalla);
             }else if (entrada.equals("÷")){
                 operador = entrada; 
+                actualizarPantalla(pantalla);
+            }else if (entrada.equals("√")){
+                operador = entrada; 
+                n1 = resultadoRaiz(n1);
                 actualizarPantalla(pantalla);
             }else if (entrada.equals("=")){
             switch (operador) {
@@ -114,5 +120,11 @@ public class CalculadoraController {
         double datoDos = Double.parseDouble(n2);
         double division = datoUno / datoDos;
         return resultado = String.valueOf(division);
+    }
+    private String resultadoRaiz (String numeroUno) {
+        String resultado; 
+        double datoUno = Double.parseDouble(n1);
+        double raiz = Math.sqrt(datoUno);
+        return resultado = String.valueOf(raiz);
     }
 }
